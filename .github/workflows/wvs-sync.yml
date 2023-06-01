@@ -1,0 +1,16 @@
+name: wvs-sync-action
+run-name: WVS Sync Action
+on: [push]
+jobs:
+  sync-to-wvs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: matthewsanders/wvs-github-sync-action@main
+        with:
+          wvs-repo: 'https://wvs.io/msanders/wvs-git-sync-test-3.git'
+        env:
+          WVS_USERNAME: "msanders"
+          WVS_PASSWORD: ${{ secrets.WVS_PASSWORD }}
